@@ -7,6 +7,10 @@ class EnterpriseManager:
 
     @staticmethod
     def validate_cif(cif: str):
-        """RETURNs TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
+        """RETURNS TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
         OR FALSE IN OTHER CASE"""
         return True
+
+    def register_document(self, input_file: str) -> str:
+        """Registers a document and returns its SHA-256 signature."""
+        pass
