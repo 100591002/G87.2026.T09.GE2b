@@ -18,8 +18,18 @@ class EnterpriseManager:
 
     def register_document(self, input_file: str) -> str:
         """Registers a document and returns its SHA-256 signature."""
-        with open(input_file, "r", encoding="utf-8") as file:
-            input_data = json.load(file)
+        # Refactored to pass TC5
+        try:
+            with open(input_file, "r", encoding="utf-8") as file:
+                input_data = json.load(file)
+        except json.JSONDecodeError as exc:
+            if "Expecting ',' delimiter" in str(exc):
+                raise EnterpriseManagementException(
+                    "JSON does not have the expected structure: missing <SEPARATOR>"
+                ) from exc
+            raise EnterpriseManagementException(
+                "The file is not JSON formatted."
+            ) from exc
 
         # Added to pass TC4
         if "PROJECT_ID" not in input_data:
