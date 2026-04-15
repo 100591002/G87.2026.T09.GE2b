@@ -149,5 +149,101 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc10_invalid_project_id_label(self):
+        """TC10: Invalid JSON from modified field name for project ID"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc10-invalid_project_id_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid PROJECT_ID label",
+            str(context.exception)
+        )
+
+    def test_tc11_invalid_project_id_value(self):
+        """TC11: Invalid JSON from modified project ID value"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc11-invalid_project_id_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid PROJECT_ID value",
+            str(context.exception)
+        )
+
+    def test_tc12_invalid_name(self):
+        """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc12-invalid_name.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid char in NAME field",
+            str(context.exception)
+        )
+
+    def test_tc13_invalid_extension(self):
+        """TC13: Invalid JSON from modified file name with invalid extension"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc13-invalid_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
+    def test_tc14_file_does_not_exist(self):
+        """TC14: Invalid from referencing a JSON path that does not exist"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc14-file_does_not_exist.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "Input file not found.",
+            str(context.exception)
+        )
+
+    def test_tc15_invalid_json_format(self):
+        """TC15: Invalid JSON format from missing curly bracket"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc15-invalid_json_format.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "The file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc16_internal_processing_error(self):
+        """TC16: Invalid case by forcing an internal processing error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc16-valid_for_signature_error.json")
+
+        with patch(
+                "uc3m_consulting.enterprise_manager.ProjectDocument.file_signature",
+                new_callable=PropertyMock,
+                side_effect=Exception("Forced signature error")
+        ):
+            with self.assertRaises(EnterpriseManagementException) as context:
+                manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "Internal processing error when getting the file_signature.",
+            str(context.exception)
+        )
+
 if __name__ == '__main__':
     unittest.main()
