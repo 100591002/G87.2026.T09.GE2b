@@ -3,7 +3,8 @@ import unittest
 import hashlib
 import json
 from pathlib import Path
-from uc3m_consulting import EnterpriseManager
+from uc3m_consulting import EnterpriseManager, EnterpriseManagementException
+
 
 class MyTestCase(unittest.TestCase):
     """class for testing the register_order method"""
@@ -69,6 +70,58 @@ class MyTestCase(unittest.TestCase):
     def test_tc3_valid_xlsx(self):
         """TC3: valid PROJECT_ID and valid FILENAME with .xlsx extension."""
         self.valid_test_case_algorithm("valid", "tc3-valid_xlsx.json")
+
+    def test_tc4_missing_project_id(self):
+        """TC4: Invalid JSON from missing PROJECT_ID"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc4-missing_project_id.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: missing <PROJECT_ID>",
+            str(context.exception)
+        )
+
+    def test_tc5_missing_separator(self):
+        """TC5: Invalid JSON from missing SEPARATOR"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc5-missing_separator.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: missing <SEPARATOR>",
+            str(context.exception)
+        )
+
+    def test_tc6_missing_filename(self):
+        """TC6: Invalid JSON from missing FILENAME"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc6-missing_filename.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: missing <FILENAME>",
+            str(context.exception)
+        )
+
+    def test_tc7_missing_fields(self):
+        """TC7: Invalid JSON from missing FIELDS"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc7-missing_fields.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: missing <FIELDS>",
+            str(context.exception)
+        )
 
 if __name__ == '__main__':
     unittest.main()
