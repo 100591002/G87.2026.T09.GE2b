@@ -123,5 +123,31 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc8_duplicate_project_id(self):
+        """TC8: Invalid JSON from duplicate <PROJECT_ID>"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc8-duplicate_project_id.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: duplicate field <PROJECT_ID>",
+            str(context.exception)
+        )
+
+    def test_tc9_duplicate_filename(self):
+        """TC9: Invalid JSON from duplicate <FILENAME>"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc9-duplicate_filename.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: duplicate field <FILENAME>",
+            str(context.exception)
+        )
+
 if __name__ == '__main__':
     unittest.main()
