@@ -106,6 +106,14 @@ class EnterpriseManager:
                 "JSON data has no valid values: invalid char in NAME field"
             )
 
+        #Added to pass TC13
+        extension = file_name.split(".")[-1]
+
+        if extension not in {"pdf", "docx", "xlsx"}:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid EXTENSION"
+            )
+
         document = ProjectDocument(project_id, file_name)
         file_signature = document.file_signature
 
