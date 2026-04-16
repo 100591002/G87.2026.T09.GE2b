@@ -63,32 +63,20 @@ class EnterpriseManager:
                     "JSON does not have the expected structure: missing <SEPARATOR>"
                 ) from exc
             raise EnterpriseManagementException(
-                "The file is not JSON formatted."
+                "The file is not JSON formatted." # Hits TC4 and TC6
             ) from exc
 
-        # check TC7
+        # Added for TC7
         if not input_data:
             raise EnterpriseManagementException(
                 "JSON does not have the expected structure: missing <FIELDS>"
             )
 
-        keys = set(input_data.keys())
 
         if "PROJECT_ID" not in input_data:
-            if keys == {"FILENAME"}:
-                raise EnterpriseManagementException(
-                    # Added to pass TC4
-                    "JSON does not have the expected structure: missing <PROJECT_ID>"
-                )
             raise EnterpriseManagementException(
                 # Added to pass TC10
                 "JSON data has no valid values: invalid PROJECT_ID label"
-            )
-
-        # Added to pass TC6
-        if "FILENAME" not in input_data:
-            raise EnterpriseManagementException(
-                "JSON does not have the expected structure: missing <FILENAME>"
             )
 
         project_id = input_data["PROJECT_ID"]

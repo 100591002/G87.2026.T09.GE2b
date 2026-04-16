@@ -109,7 +109,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "JSON does not have the expected structure: missing <FILENAME>",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
