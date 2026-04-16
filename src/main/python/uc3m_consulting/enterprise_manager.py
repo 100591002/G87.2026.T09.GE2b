@@ -29,19 +29,21 @@ class EnterpriseManager:
 
             for key, value in pairs:
                 if key in seen_keys:
+                    # Only trigger for known valid fields
                     if key == "PROJECT_ID":
                         raise EnterpriseManagementException(
                             "JSON does not have the expected structure: duplicate field <PROJECT_ID>"
                         )
+                    # Added to pass TC9
+                    elif key == "FILENAME":
+                        raise EnterpriseManagementException(
+                            "JSON does not have the expected structure: duplicate field <FILENAME>"
+                        )
 
-            # Added to pass TC9
-                if key == "FILENAME":
-                    raise EnterpriseManagementException(
-                        "JSON does not have the expected structure: duplicate field <FILENAME>"
-                    )
 
                 seen_keys.add(key)
                 data[key] = value
+
             return data
 
         # Refactored to pass TC5
