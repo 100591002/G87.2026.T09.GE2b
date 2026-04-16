@@ -31,6 +31,12 @@ class EnterpriseManager:
                 "The file is not JSON formatted."
             ) from exc
 
+        # check TC7
+        if not input_data:
+            raise EnterpriseManagementException(
+                "JSON does not have the expected structure: missing <FIELDS>"
+            )
+
         # Added to pass TC4
         if "PROJECT_ID" not in input_data:
             raise EnterpriseManagementException(

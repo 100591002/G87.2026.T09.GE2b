@@ -1,6 +1,5 @@
 """class for testing the regsiter_order method"""
 import unittest
-import hashlib
 import json
 from pathlib import Path
 from unittest.mock import PropertyMock, patch
