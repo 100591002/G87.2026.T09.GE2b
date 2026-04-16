@@ -117,8 +117,13 @@ class EnterpriseManager:
                 "JSON data has no valid values: invalid EXTENSION"
             )
 
-        document = ProjectDocument(project_id, file_name)
-        file_signature = document.file_signature
+        try:
+            document = ProjectDocument(project_id, file_name)
+            file_signature = document.file_signature
+        except Exception as exc:
+            raise EnterpriseManagementException(
+                "Internal processing error when getting the file_signature."
+            ) from exc
 
         try:
             with open("all_documents.json", "r", encoding="utf-8") as file:
