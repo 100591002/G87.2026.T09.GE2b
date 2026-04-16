@@ -37,6 +37,12 @@ class EnterpriseManager:
                 "JSON does not have the expected structure: missing <PROJECT_ID>"
             )
 
+        # Added to pass TC6
+        if "FILENAME" not in input_data:
+            raise EnterpriseManagementException(
+                "JSON does not have the expected structure: missing <FILENAME>"
+            )
+
         project_id = input_data["PROJECT_ID"]
         file_name = input_data["FILENAME"]
 
