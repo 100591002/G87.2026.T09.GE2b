@@ -98,6 +98,14 @@ class EnterpriseManager:
 
         file_name = input_data["FILENAME"]
 
+        #Added to pass TC12
+        name_part = file_name.split(".")[0]
+
+        if not name_part.isalnum():
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid char in NAME field"
+            )
+
         document = ProjectDocument(project_id, file_name)
         file_signature = document.file_signature
 
