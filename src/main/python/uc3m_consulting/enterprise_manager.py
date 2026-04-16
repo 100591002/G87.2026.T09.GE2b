@@ -10,6 +10,7 @@ class EnterpriseManager:
     def __init__(self):
         pass
 
+
     @staticmethod
     def validate_cif(cif: str):
         """RETURNS TRUE IF THE IBAN RECEIVED IS VALID SPANISH IBAN,
@@ -18,10 +19,33 @@ class EnterpriseManager:
 
     def register_document(self, input_file: str) -> str:
         """Registers a document and returns its SHA-256 signature."""
+
+        def json_object_pairs_hook(pairs):
+            """Helper method for TC8 to
+            parse JSON while detecting duplicate fields."""
+
+            seen_keys = set()
+            data = {}
+
+            for key, value in pairs:
+                if key in seen_keys:
+                    if key == "PROJECT_ID":
+                        raise EnterpriseManagementException(
+                            "JSON does not have the expected structure: duplicate field <PROJECT_ID>"
+                        )
+
+                seen_keys.add(key)
+                data[key] = value
+            return data
+
         # Refactored to pass TC5
         try:
             with open(input_file, "r", encoding="utf-8") as file:
-                input_data = json.load(file)
+                # refactored load() parameters to pass TC8
+                input_data = json.load(
+                    file,
+                    object_pairs_hook=json_object_pairs_hook
+                )
         except json.JSONDecodeError as exc:
             if "Expecting ',' delimiter" in str(exc):
                 raise EnterpriseManagementException(

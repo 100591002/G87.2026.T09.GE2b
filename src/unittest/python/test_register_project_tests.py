@@ -52,15 +52,27 @@ class MyTestCase(unittest.TestCase):
 
     def test_tc1_valid_pdf(self):
         """TC1: valid PROJECT_ID and valid FILENAME with .pdf extension."""
-        self.valid_test_case_algorithm("valid", "tc1-valid_pdf.json", "5771041b7746580d20c491b004fdc34fac914dddcb75fed9c19165ece809d7c8")
+        self.valid_test_case_algorithm(
+            "valid",
+            "tc1-valid_pdf.json",
+            "5771041b7746580d20c491b004fdc34fac914dddcb75fed9c19165ece809d7c8"
+        )
 
     def test_tc2_valid_docx(self):
         """TC2: valid PROJECT_ID and valid FILENAME with .docx extension."""
-        self.valid_test_case_algorithm("valid", "tc2-valid_docx.json","77dfa10d2b667b499d2de86f9ffae784f3582ca58228807696a2744f1af03e19")
+        self.valid_test_case_algorithm(
+            "valid",
+            "tc2-valid_docx.json",
+            "77dfa10d2b667b499d2de86f9ffae784f3582ca58228807696a2744f1af03e19"
+        )
 
     def test_tc3_valid_xlsx(self):
         """TC3: valid PROJECT_ID and valid FILENAME with .xlsx extension."""
-        self.valid_test_case_algorithm("valid", "tc3-valid_xlsx.json", "2609fc088a47dff0da1e1004a6cc17dcb614edc2fcc146677831ab7d93d0987a")
+        self.valid_test_case_algorithm(
+            "valid",
+            "tc3-valid_xlsx.json",
+            "2609fc088a47dff0da1e1004a6cc17dcb614edc2fcc146677831ab7d93d0987a"
+        )
 
     def test_tc4_missing_project_id(self):
         """TC4: Invalid JSON from missing PROJECT_ID"""
