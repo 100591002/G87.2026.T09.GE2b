@@ -34,6 +34,12 @@ class EnterpriseManager:
                             "JSON does not have the expected structure: duplicate field <PROJECT_ID>"
                         )
 
+            # Added to pass TC9
+                if key == "FILENAME":
+                    raise EnterpriseManagementException(
+                        "JSON does not have the expected structure: duplicate field <FILENAME>"
+                    )
+
                 seen_keys.add(key)
                 data[key] = value
             return data
