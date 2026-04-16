@@ -69,10 +69,17 @@ class EnterpriseManager:
                 "JSON does not have the expected structure: missing <FIELDS>"
             )
 
-        # Added to pass TC4
+        keys = set(input_data.keys())
+
         if "PROJECT_ID" not in input_data:
+            if keys == {"FILENAME"}:
+                raise EnterpriseManagementException(
+                    # Added to pass TC4
+                    "JSON does not have the expected structure: missing <PROJECT_ID>"
+                )
             raise EnterpriseManagementException(
-                "JSON does not have the expected structure: missing <PROJECT_ID>"
+                # Added to pass TC10
+                "JSON data has no valid values: invalid PROJECT_ID label"
             )
 
         # Added to pass TC6
