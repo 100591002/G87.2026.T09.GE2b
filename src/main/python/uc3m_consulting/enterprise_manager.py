@@ -54,6 +54,9 @@ class EnterpriseManager:
                     file,
                     object_pairs_hook=json_object_pairs_hook
                 )
+        #Added for TC14
+        except FileNotFoundError as exc:
+            raise EnterpriseManagementException("Input file not found.") from exc
         except json.JSONDecodeError as exc:
             if "Expecting ',' delimiter" in str(exc):
                 raise EnterpriseManagementException(
