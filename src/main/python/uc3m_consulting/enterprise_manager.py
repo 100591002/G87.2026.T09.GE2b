@@ -29,13 +29,21 @@ class EnterpriseManager:
 
             for key, value in pairs:
                 if key in seen_keys:
+                    # Only trigger for known valid fields
                     if key == "PROJECT_ID":
                         raise EnterpriseManagementException(
                             "JSON does not have the expected structure: duplicate field <PROJECT_ID>"
                         )
+                    # Added to pass TC9
+                    elif key == "FILENAME":
+                        raise EnterpriseManagementException(
+                            "JSON does not have the expected structure: duplicate field <FILENAME>"
+                        )
+
 
                 seen_keys.add(key)
                 data[key] = value
+
             return data
 
         # Refactored to pass TC5
@@ -46,6 +54,9 @@ class EnterpriseManager:
                     file,
                     object_pairs_hook=json_object_pairs_hook
                 )
+        #Added for TC14
+        except FileNotFoundError as exc:
+            raise EnterpriseManagementException("Input file not found.") from exc
         except json.JSONDecodeError as exc:
             if "Expecting ',' delimiter" in str(exc):
                 raise EnterpriseManagementException(
@@ -61,10 +72,17 @@ class EnterpriseManager:
                 "JSON does not have the expected structure: missing <FIELDS>"
             )
 
-        # Added to pass TC4
+        keys = set(input_data.keys())
+
         if "PROJECT_ID" not in input_data:
+            if keys == {"FILENAME"}:
+                raise EnterpriseManagementException(
+                    # Added to pass TC4
+                    "JSON does not have the expected structure: missing <PROJECT_ID>"
+                )
             raise EnterpriseManagementException(
-                "JSON does not have the expected structure: missing <PROJECT_ID>"
+                # Added to pass TC10
+                "JSON data has no valid values: invalid PROJECT_ID label"
             )
 
         # Added to pass TC6
@@ -74,10 +92,38 @@ class EnterpriseManager:
             )
 
         project_id = input_data["PROJECT_ID"]
+
+        #Added to pass TC11
+        if not isinstance(project_id, str) or len(project_id) != 32:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid PROJECT_ID value"
+            )
+
         file_name = input_data["FILENAME"]
 
-        document = ProjectDocument(project_id, file_name)
-        file_signature = document.file_signature
+        #Added to pass TC12
+        name_part = file_name.split(".")[0]
+
+        if not name_part.isalnum():
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid char in NAME field"
+            )
+
+        #Added to pass TC13
+        extension = file_name.split(".")[-1]
+
+        if extension not in {"pdf", "docx", "xlsx"}:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid EXTENSION"
+            )
+
+        try:
+            document = ProjectDocument(project_id, file_name)
+            file_signature = document.file_signature
+        except Exception as exc:
+            raise EnterpriseManagementException(
+                "Internal processing error when getting the file_signature."
+            ) from exc
 
         try:
             with open("all_documents.json", "r", encoding="utf-8") as file:
