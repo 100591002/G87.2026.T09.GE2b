@@ -89,6 +89,13 @@ class EnterpriseManager:
             )
 
         project_id = input_data["PROJECT_ID"]
+
+        #Added to pass TC11
+        if not isinstance(project_id, str) or len(project_id) != 32:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid PROJECT_ID value"
+            )
+
         file_name = input_data["FILENAME"]
 
         document = ProjectDocument(project_id, file_name)
