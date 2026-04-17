@@ -296,6 +296,19 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc21_missing_filename_label(self):
+        """TC21: Invalid JSON format from missing FILENAME label"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc21_missing_filename_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure. Invalid FILENAME label",
+            str(context.exception)
+        )
+
     def test_tc_del_close_quote_filename_label(self):
         """TC_: Invalid JSON format from missing opening quotations for FILENAME label"""
 
