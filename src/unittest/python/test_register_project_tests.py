@@ -219,9 +219,22 @@ class MyTestCase(unittest.TestCase):
         )
 
     def test_tc15_del_close_quote_proj_id_label(self):
-        """TC13: Invalid JSON format from missing ending quotations for PROJECT_ID label"""
+        """TC15: Invalid JSON format from missing ending quotations for PROJECT_ID label"""
         manager = EnterpriseManager()
         json_path = self.get_json_path("invalid", "tc15_del_close_quote_proj_id_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc16_missing_colon_project_id(self):
+        """TC16: Invalid JSON format from missing colon within PROJECT_ID field"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc16_missing_colon_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
