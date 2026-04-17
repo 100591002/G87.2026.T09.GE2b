@@ -361,6 +361,19 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc25_missing_extension(self):
+        """TC25: Invalid JSON format from missing <EXTENSION> field"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc25_missing_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
     def test_tc_del_close_quote_filename_value(self):
         """TC_: Invalid JSON format from missing ending quotations for FILENAME value"""
 
