@@ -244,6 +244,19 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc17_del_open_quote_proj_id_value(self):
+        """TC17: Invalid JSON format from missing opening quotations for PROJECT_ID value"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc17_del_open_quote_proj_id_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
     def test_tc35_invalid_project_id_label(self):
         """TC35: Invalid JSON from modified field name for project ID"""
         manager = EnterpriseManager()
