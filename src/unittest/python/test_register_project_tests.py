@@ -257,6 +257,19 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc18_missing_proj_id_value(self):
+        """TC18: Invalid JSON format from missing opening quotations for PROJECT_ID value"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc18_missing_proj_id_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid PROJECT_ID value",
+            str(context.exception)
+        )
+
     def test_tc35_invalid_project_id_label(self):
         """TC35: Invalid JSON from modified field name for project ID"""
         manager = EnterpriseManager()
