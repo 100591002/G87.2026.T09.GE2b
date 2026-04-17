@@ -58,12 +58,8 @@ class EnterpriseManager:
         except FileNotFoundError as exc:
             raise EnterpriseManagementException("Input file not found.") from exc
         except json.JSONDecodeError as exc:
-            if "Expecting ',' delimiter" in str(exc):
-                raise EnterpriseManagementException(
-                    "JSON does not have the expected structure: missing <SEPARATOR>"
-                ) from exc
             raise EnterpriseManagementException(
-                "The file is not JSON formatted." # Hits TC4 and TC6
+                "The file is not JSON formatted." # Hits TC4, TC5 and TC6
             ) from exc
 
         # Added for TC7
@@ -76,7 +72,7 @@ class EnterpriseManager:
         if "PROJECT_ID" not in input_data:
             raise EnterpriseManagementException(
                 # Added to pass TC10
-                "JSON data has no valid values: invalid PROJECT_ID label"
+                "JSON does not have the expected structure. Invalid PROJECT_ID label"
             )
 
         project_id = input_data["PROJECT_ID"]
@@ -94,7 +90,7 @@ class EnterpriseManager:
 
         if not name_part.isalnum():
             raise EnterpriseManagementException(
-                "JSON data has no valid values: invalid char in NAME field"
+                "JSON data has no valid values: invalid NAME"
             )
 
         #Added to pass TC13

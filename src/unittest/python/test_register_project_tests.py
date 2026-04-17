@@ -74,10 +74,12 @@ class MyTestCase(unittest.TestCase):
             "2609fc088a47dff0da1e1004a6cc17dcb614edc2fcc146677831ab7d93d0987a"
         )
 
-    def test_tc4_missing_project_id(self):
-        """TC4: Invalid JSON from missing PROJECT_ID"""
+
+
+    def test_tc5_missing_json_start(self):
+        """TC5: Invalid JSON format from missing curly bracket at start of file"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc4-missing_project_id.json")
+        json_path = self.get_json_path("invalid", "tc5-missing_json_start.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
@@ -87,36 +89,10 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc5_missing_separator(self):
-        """TC5: Invalid JSON from missing SEPARATOR"""
+    def test_tc6_missing_fields(self):
+        """TC6: Invalid JSON from missing FIELDS"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc5-missing_separator.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON does not have the expected structure: missing <SEPARATOR>",
-            str(context.exception)
-        )
-
-    def test_tc6_missing_filename(self):
-        """TC6: Invalid JSON from missing FILENAME"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc6-missing_filename.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "The file is not JSON formatted.",
-            str(context.exception)
-        )
-
-    def test_tc7_missing_fields(self):
-        """TC7: Invalid JSON from missing FIELDS"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc7-missing_fields.json")
+        json_path = self.get_json_path("invalid", "tc6-missing_fields.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
@@ -126,101 +102,10 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc8_duplicate_project_id(self):
-        """TC8: Invalid JSON from duplicate <PROJECT_ID>"""
+    def test_tc8_missing_project_id(self):
+        """TC8: Invalid JSON from missing PROJECT_ID"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc8-duplicate_project_id.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON does not have the expected structure: duplicate field <PROJECT_ID>",
-            str(context.exception)
-        )
-
-    def test_tc9_duplicate_filename(self):
-        """TC9: Invalid JSON from duplicate <FILENAME>"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc9-duplicate_filename.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON does not have the expected structure: duplicate field <FILENAME>",
-            str(context.exception)
-        )
-
-    def test_tc10_invalid_project_id_label(self):
-        """TC10: Invalid JSON from modified field name for project ID"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc10-invalid_project_id_label.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON data has no valid values: invalid PROJECT_ID label",
-            str(context.exception)
-        )
-
-    def test_tc11_invalid_project_id_value(self):
-        """TC11: Invalid JSON from modified project ID value"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc11-invalid_project_id_value.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON data has no valid values: invalid PROJECT_ID value",
-            str(context.exception)
-        )
-
-    def test_tc12_invalid_name(self):
-        """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc12-invalid_name.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON data has no valid values: invalid char in NAME field",
-            str(context.exception)
-        )
-
-    def test_tc13_invalid_extension(self):
-        """TC13: Invalid JSON from modified file name with invalid extension"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc13-invalid_extension.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "JSON data has no valid values: invalid EXTENSION",
-            str(context.exception)
-        )
-
-    def test_tc14_file_does_not_exist(self):
-        """TC14: Invalid from referencing a JSON path that does not exist"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc14-file_does_not_exist.json")
-
-        with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
-
-        self.assertEqual(
-            "Input file not found.",
-            str(context.exception)
-        )
-
-    def test_tc15_invalid_json_format(self):
-        """TC15: Invalid JSON format from missing curly bracket"""
-        manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc15-invalid_json_format.json")
+        json_path = self.get_json_path("invalid", "tc8-missing_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
@@ -230,10 +115,130 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc16_internal_processing_error(self):
-        """TC16: Invalid case by forcing an internal processing error"""
+    def test_tc9_missing_separator(self):
+        """TC9: Invalid JSON from missing SEPARATOR"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc16-valid_for_signature_error.json")
+        json_path = self.get_json_path("invalid", "tc9-missing_separator.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "The file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc10_missing_filename(self):
+        """TC10: Invalid JSON from missing FILENAME"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc10-missing_filename.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "The file is not JSON formatted.",
+            str(context.exception)
+        )
+
+
+    def test_tc11_duplicate_project_id(self):
+        """TC11: Invalid JSON from duplicate <PROJECT_ID>"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc11-duplicate_project_id.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: duplicate field <PROJECT_ID>",
+            str(context.exception)
+        )
+
+    def test_tc12_duplicate_filename(self):
+        """TC12: Invalid JSON from duplicate <FILENAME>"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc12-duplicate_filename.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure: duplicate field <FILENAME>",
+            str(context.exception)
+        )
+
+    def test_tc35_invalid_project_id_label(self):
+        """TC35: Invalid JSON from modified field name for project ID"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_project_id_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure. Invalid PROJECT_ID label",
+            str(context.exception)
+        )
+
+    def test_tc43_mod_project_id_value(self):
+        """TC11: Invalid JSON from modified project ID value"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_project_id_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid PROJECT_ID value",
+            str(context.exception)
+        )
+
+    # REFACTOR TO CHECK LENGTH == 8
+    def test_tc59_mod_name(self):
+        """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_name_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid NAME",
+            str(context.exception)
+        )
+
+    def test_tc63_mod_node39(self):
+        """TC63: Invalid JSON from modified .pdf extension with invalid extension"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
+
+    def test_tc68_file_does_not_exist(self):
+        """TC68: Invalid from referencing a JSON path that does not exist"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc68-file_does_not_exist.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "Input file not found.",
+            str(context.exception)
+        )
+
+    def test_tc69_internal_processing_error(self):
+        """TC69: Invalid case by forcing an internal processing error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc69-valid_for_signature_error.json")
 
         with patch(
                 "uc3m_consulting.enterprise_manager.ProjectDocument.file_signature",
