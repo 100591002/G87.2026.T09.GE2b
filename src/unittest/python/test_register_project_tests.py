@@ -74,7 +74,18 @@ class MyTestCase(unittest.TestCase):
             "2609fc088a47dff0da1e1004a6cc17dcb614edc2fcc146677831ab7d93d0987a"
         )
 
+    def test_tc4_empty_file(self):
+        """TC4: Invalid JSON format from empty file."""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc4-empty_file.json")
 
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "The file is not JSON formatted.",
+            str(context.exception)
+        )
 
     def test_tc5_missing_json_start(self):
         """TC5: Invalid JSON format from missing curly bracket at start of file"""
