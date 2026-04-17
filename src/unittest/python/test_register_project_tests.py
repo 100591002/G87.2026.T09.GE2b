@@ -113,6 +113,19 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc7_missing_json_end(self):
+        """TC7: Invalid JSON format from missing curly bracket at end of file"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc7_missing_json_end.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "The file is not JSON formatted.",
+            str(context.exception)
+        )
+
     def test_tc8_missing_project_id(self):
         """TC8: Invalid JSON from missing PROJECT_ID"""
         manager = EnterpriseManager()
