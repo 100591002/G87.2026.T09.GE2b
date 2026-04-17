@@ -192,10 +192,10 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc13_del_open_quote_proj_id(self):
+    def test_tc13_del_open_quote_proj_id_label(self):
         """TC13: Invalid JSON format from missing opening quotations for PROJECT_ID label"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc13_del_open_quote_proj_id.json")
+        json_path = self.get_json_path("invalid", "tc13_del_open_quote_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
@@ -218,10 +218,10 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc_del_close_quote_proj_id(self):
-        """TC13: Invalid JSON format from missing opening quotations for PROJECT_ID label"""
+    def test_tc15_del_close_quote_proj_id_label(self):
+        """TC13: Invalid JSON format from missing ending quotations for PROJECT_ID label"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc13_del_open_quote_proj_id.json")
+        json_path = self.get_json_path("invalid", "tc15_del_close_quote_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
