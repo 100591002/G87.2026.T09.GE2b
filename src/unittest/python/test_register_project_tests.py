@@ -778,7 +778,7 @@ class MyTestCase(unittest.TestCase):
         )
 
     # REFACTOR TO CHECK LENGTH == 8
-    def test_tc58_mod_name(self):
+    def test_tc58_dup_name(self):
         """TC58: Invalid JSON from duplicate file name that is not 8 alphanumeric chars"""
         manager = EnterpriseManager()
         json_path = self.get_json_path("invalid", "shared-invalid_name_value.json")
@@ -803,8 +803,47 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc63_mod_node39(self):
-        """TC63: Invalid JSON from modified .pdf extension with invalid extension"""
+    def test_tc60_dup_pdf_extension(self):
+        """TC60: Duplicate .pdf extension violates the accepted extension types"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc60_dup_pdf_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
+    def test_tc61_dup_docx_extension(self):
+        """TC61: Duplicate .docx extension violates the accepted extension types"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc61_dup_docx_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
+    def test_tc62_dup_xlsx_extension(self):
+        """TC62: Duplicate .xlsx extension violates the accepted extension types"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc62_dup_xlsx_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
+    def test_tc63_mod_pdf_extension(self):
+        """TC63: Invalid JSON from modifying .pdf extension to invalid extension"""
         manager = EnterpriseManager()
         json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
 
@@ -816,6 +855,31 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc64_mod_docx_extension(self):
+        """TC64: Invalid JSON from modifying .docx extension to invalid extension"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
+
+    def test_tc65_mod_xlsx_extension(self):
+        """TC63: Invalid JSON from modifying .xlsx extension to invalid extension"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid EXTENSION",
+            str(context.exception)
+        )
 
     def test_tc68_file_does_not_exist(self):
         """TC68: Invalid from referencing a JSON path that does not exist"""
