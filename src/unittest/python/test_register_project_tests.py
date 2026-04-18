@@ -672,6 +672,33 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    # This will def need to be implemented in method
+    def test_tc50_dup_filename_label(self):
+        """TC50: Invalid JSON from duplicating FILENAME field label"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_filename_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure. Invalid FILENAME label",
+            str(context.exception)
+        )
+
+    def test_tc51_mod_filename_label(self):
+        """TC51: Invalid JSON from modified FILENAME field label"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_filename_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure. Invalid FILENAME label",
+            str(context.exception)
+        )
+
     # REFACTOR TO CHECK LENGTH == 8
     def test_tc59_mod_name(self):
         """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
