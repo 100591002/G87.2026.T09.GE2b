@@ -361,10 +361,10 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc25_missing_extension(self):
-        """TC25: Invalid JSON format from missing <EXTENSION> field"""
+    def test_tc26_missing_extension(self):
+        """TC26: Invalid JSON format from missing <EXTENSION> field"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc25_missing_extension.json")
+        json_path = self.get_json_path("invalid", "tc26_missing_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
@@ -374,10 +374,62 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc26_del_close_quote_filename_value(self):
-        """TC26: Invalid JSON format from missing ending quotations for FILENAME value"""
+    def test_tc27_del_close_quote_filename_value(self):
+        """TC27: Invalid JSON format from missing ending quotations for FILENAME value"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc26_del_close_quote_filename_value.json")
+        json_path = self.get_json_path("invalid", "tc27_del_close_quote_filename_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc28_dup_json_start(self):
+        """TC28: Duplicate JSON start bracket causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc28_dup_json_start.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc29_mod_json_start(self):
+        """TC29: Modified JSON start bracket causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc29_mod_json_start.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc30_dup_json_end(self):
+        """TC30: Duplicate JSON end bracket causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc30_dup_json_end.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc31_mod_json_end(self):
+        """TC31: Modified JSON end bracket causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc31_mod_json_end.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
