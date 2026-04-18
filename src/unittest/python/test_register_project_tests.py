@@ -516,6 +516,32 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc38_dup_colon_project_id(self):
+        """TC38: Duplicate colon for PROJECT_ID field causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc38_dup_colon_project_id.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc39_mod_colon_project_id(self):
+        """TC38: Modified colon for PROJECT_ID field causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc39_mod_colon_project_id.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
     def test_tc43_mod_project_id_value(self):
         """TC11: Invalid JSON from modified project ID value"""
         manager = EnterpriseManager()
