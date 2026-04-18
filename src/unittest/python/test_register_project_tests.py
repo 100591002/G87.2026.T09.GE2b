@@ -439,6 +439,32 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc32_dup_open_quote_proj_id_label(self):
+        """TC32: Duplicate opening quotation mark for PROJECT_ID label causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc32_dup_open_quote_proj_id_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc33_mod_open_quote_proj_id_label(self):
+        """TC33: Modified opening quotation mark for PROJECT_ID label causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc33_mod_open_quote_proj_id_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
     def test_tc35_invalid_project_id_label(self):
         """TC35: Invalid JSON from modified field name for project ID"""
         manager = EnterpriseManager()
