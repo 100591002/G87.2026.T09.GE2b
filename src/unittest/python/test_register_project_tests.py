@@ -465,7 +465,19 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc35_invalid_project_id_label(self):
+    def test_tc34_dup_project_id_label(self):
+        """TC34: Invalid JSON from duplicating PROJECT_ID field label"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_project_id_label.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON does not have the expected structure. Invalid PROJECT_ID label",
+            str(context.exception)
+        )
+    def test_tc35_mod_project_id_label(self):
         """TC35: Invalid JSON from modified field name for project ID"""
         manager = EnterpriseManager()
         json_path = self.get_json_path("invalid", "shared-invalid_project_id_label.json")
