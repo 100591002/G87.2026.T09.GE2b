@@ -725,6 +725,32 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc54_dup_colon_filename(self):
+        """TC54: Duplicate colon for FILENAME field causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc54_dup_colon_filename.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc55_mod_colon_filename(self):
+        """TC55: Modified colon for FILENAME field causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc55_mod_colon_filename.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
     # REFACTOR TO CHECK LENGTH == 8
     def test_tc59_mod_name(self):
         """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
