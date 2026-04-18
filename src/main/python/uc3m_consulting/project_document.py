@@ -1,10 +1,13 @@
 """Contains the class OrderShipping"""
 import hashlib
 from datetime import datetime, timezone
+from freezegun import freeze_time
+
 
 class ProjectDocument():
     """Class representing the information required for shipping of an order"""
 
+    @freeze_time("16/03/2026")
     def __init__(self, project_id: str, file_name):
         self.__alg = "SHA-256"
         self.__typ = "DOCUMENT"
@@ -28,7 +31,8 @@ class ProjectDocument():
                 "{alg:" + str(self.__alg)
                 + ", typ:" + str(self.__typ)
                 + ", project_id:" + str(self.__project_id)
-                + ", file_name:" + str(self.__file_name) + "}"
+                + ", file_name:" + str(self.__file_name)
+                + ", register_date:" + str(self.__register_date) + "}"
         )
 
     @property

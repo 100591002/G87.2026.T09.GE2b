@@ -55,7 +55,7 @@ class MyTestCase(unittest.TestCase):
         self.valid_test_case_algorithm(
             "valid",
             "tc1-valid_pdf.json",
-            "5771041b7746580d20c491b004fdc34fac914dddcb75fed9c19165ece809d7c8"
+            "1a11adad20dead4345f337a775f3927f78432c1f6441608bb953a2df5133ec41"
         )
 
     def test_tc2_valid_docx(self):
@@ -63,7 +63,7 @@ class MyTestCase(unittest.TestCase):
         self.valid_test_case_algorithm(
             "valid",
             "tc2-valid_docx.json",
-            "77dfa10d2b667b499d2de86f9ffae784f3582ca58228807696a2744f1af03e19"
+            "caf9f4c756850f8196a4976179a38d6c8d7ea8db3da0bca74b1d0e1e7d8352f0"
         )
 
     def test_tc3_valid_xlsx(self):
@@ -71,7 +71,7 @@ class MyTestCase(unittest.TestCase):
         self.valid_test_case_algorithm(
             "valid",
             "tc3-valid_xlsx.json",
-            "2609fc088a47dff0da1e1004a6cc17dcb614edc2fcc146677831ab7d93d0987a"
+            "85392121ec2f93860df8697e9bd6bb7cb9e27cb458b8b3b8964b230139182f66"
         )
 
     def test_tc4_empty_file(self):
