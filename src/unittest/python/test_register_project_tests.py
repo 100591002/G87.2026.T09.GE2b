@@ -881,6 +881,32 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc66_dup_close_quote_filename_value(self):
+        """TC66: Duplicate closing quotation mark for FILENAME value causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc66_dup_close_quote_filename_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc67_mod_close_quote_filename_value(self):
+        """TC67: Modified closing quotation mark for FILENAME value causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc67_mod_close_quote_filename_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
     def test_tc68_file_does_not_exist(self):
         """TC68: Invalid from referencing a JSON path that does not exist"""
         manager = EnterpriseManager()
