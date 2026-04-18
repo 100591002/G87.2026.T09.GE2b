@@ -568,8 +568,21 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc42_dup_project_id_value(self):
+        """TC42: Invalid JSON from duplicated project ID value"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_project_id_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid PROJECT_ID value",
+            str(context.exception)
+        )
+
     def test_tc43_mod_project_id_value(self):
-        """TC11: Invalid JSON from modified project ID value"""
+        """TC43: Invalid JSON from modified project ID value"""
         manager = EnterpriseManager()
         json_path = self.get_json_path("invalid", "shared-invalid_project_id_value.json")
 
