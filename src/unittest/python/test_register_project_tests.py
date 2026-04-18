@@ -764,10 +764,10 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
-    def test_tc57_dup_open_quote_filename_value(self):
+    def test_tc57_mod_open_quote_filename_value(self):
         """TC57: Modified opening quotation mark for FILENAME value causes JSON format error"""
         manager = EnterpriseManager()
-        json_path = self.get_json_path("invalid", "tc57_dup_open_quote_filename_value.json")
+        json_path = self.get_json_path("invalid", "tc57_mod_open_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
             manager.register_document(str(json_path))
@@ -778,8 +778,20 @@ class MyTestCase(unittest.TestCase):
         )
 
     # REFACTOR TO CHECK LENGTH == 8
+    def test_tc58_mod_name(self):
+        """TC58: Invalid JSON from duplicate file name that is not 8 alphanumeric chars"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "shared-invalid_name_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "JSON data has no valid values: invalid NAME",
+            str(context.exception)
+        )
     def test_tc59_mod_name(self):
-        """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
+        """TC59: Invalid JSON from duplicate file name that is not 8 alphanumeric chars"""
         manager = EnterpriseManager()
         json_path = self.get_json_path("invalid", "shared-invalid_name_value.json")
 
