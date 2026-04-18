@@ -751,6 +751,32 @@ class MyTestCase(unittest.TestCase):
             str(context.exception)
         )
 
+    def test_tc56_dup_open_quote_filename_value(self):
+        """TC56: Duplicate opening quotation mark for FILENAME value causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc56_dup_open_quote_filename_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
+    def test_tc57_dup_open_quote_filename_value(self):
+        """TC57: Modified opening quotation mark for FILENAME value causes JSON format error"""
+        manager = EnterpriseManager()
+        json_path = self.get_json_path("invalid", "tc57_dup_open_quote_filename_value.json")
+
+        with self.assertRaises(EnterpriseManagementException) as context:
+            manager.register_document(str(json_path))
+
+        self.assertEqual(
+            "This file is not JSON formatted.",
+            str(context.exception)
+        )
+
     # REFACTOR TO CHECK LENGTH == 8
     def test_tc59_mod_name(self):
         """TC12: Invalid JSON from modified file name with non-alphanumeric character"""
