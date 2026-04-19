@@ -46,8 +46,11 @@ class MyTestCase(unittest.TestCase):
             documents = json.load(file)
 
         last_document = documents[-1]
+        self.assertEqual(last_document["alg"], "SHA-256")
+        self.assertEqual(last_document["typ"], "DOCUMENT")
         self.assertEqual(last_document["project_id"], project_id)
         self.assertEqual(last_document["file_name"], file_name)
+        self.assertIn("register_date", last_document)
         self.assertEqual(last_document["file_signature"], result)
 
     def test_tc1_valid_pdf(self):

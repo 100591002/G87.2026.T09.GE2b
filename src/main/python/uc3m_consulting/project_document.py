@@ -19,7 +19,7 @@ class ProjectDocument():
     def to_json(self):
         """returns the object data in JSON format"""
         return {"alg": self.__alg,
-                "type": self.__typ,
+                "typ": self.__typ,
                 "project_id": self.__project_id,
                 "file_name": self.__file_name,
                 "register_date": self.__register_date,
