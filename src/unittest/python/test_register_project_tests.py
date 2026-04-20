@@ -1,4 +1,4 @@
-"""class for testing the regsiter_order method"""
+"""class for testing the register_order method"""
 import unittest
 import json
 from pathlib import Path
@@ -112,7 +112,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "JSON does not have the expected structure: missing <FIELDS>",
+            "JSON does not have the expected structure: missing FIELDS",
             str(context.exception)
         )
 
@@ -178,7 +178,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "JSON does not have the expected structure: duplicate field <PROJECT_ID>",
+            "JSON does not have the expected structure: duplicate field PROJECT_ID",
             str(context.exception)
         )
 
@@ -191,7 +191,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "JSON does not have the expected structure: duplicate field <FILENAME>",
+            "JSON does not have the expected structure: duplicate field FILENAME",
             str(context.exception)
         )
 
@@ -204,7 +204,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -230,7 +230,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -243,7 +243,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -256,7 +256,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -282,7 +282,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -295,7 +295,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -321,7 +321,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -334,7 +334,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -347,7 +347,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -386,7 +386,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -399,7 +399,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -412,7 +412,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -425,7 +425,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -438,7 +438,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -451,7 +451,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -464,7 +464,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -502,7 +502,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -515,7 +515,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -528,7 +528,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -541,7 +541,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -554,7 +554,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -567,7 +567,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -606,7 +606,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -619,7 +619,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -632,7 +632,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -645,7 +645,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -658,7 +658,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -671,7 +671,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -711,7 +711,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -724,7 +724,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -737,7 +737,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -750,7 +750,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -763,7 +763,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -776,7 +776,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -893,7 +893,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 
@@ -906,7 +906,7 @@ class MyTestCase(unittest.TestCase):
             manager.register_document(str(json_path))
 
         self.assertEqual(
-            "This file is not JSON formatted.",
+            "The file is not JSON formatted.",
             str(context.exception)
         )
 

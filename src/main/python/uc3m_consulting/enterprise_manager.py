@@ -32,12 +32,12 @@ class EnterpriseManager:
                     # Only trigger for known valid fields
                     if key == "PROJECT_ID":
                         raise EnterpriseManagementException(
-                            "JSON does not have the expected structure: duplicate field <PROJECT_ID>"
+                            "JSON does not have the expected structure: duplicate field PROJECT_ID"
                         )
                     # Added to pass TC9
-                    elif key == "FILENAME":
+                    if key == "FILENAME":
                         raise EnterpriseManagementException(
-                            "JSON does not have the expected structure: duplicate field <FILENAME>"
+                            "JSON does not have the expected structure: duplicate field FILENAME"
                         )
 
 
@@ -65,7 +65,7 @@ class EnterpriseManager:
         # Added for TC7
         if not input_data:
             raise EnterpriseManagementException(
-                "JSON does not have the expected structure: missing <FIELDS>"
+                "JSON does not have the expected structure: missing FIELDS"
             )
 
 
