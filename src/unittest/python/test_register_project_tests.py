@@ -16,7 +16,7 @@ class MyTestCase(unittest.TestCase):
         json_path = (
                 Path(__file__).parent
                 / "resources"
-                / "register_document"
+                / "RegisterDocument"
                 / folder_type
                 / json_filename
         )
@@ -34,7 +34,7 @@ class MyTestCase(unittest.TestCase):
         project_id = input_data["PROJECT_ID"]
         file_name = input_data["FILENAME"]
 
-        result = manager.register_document(str(json_path))
+        result = manager.RegisterDocument(str(json_path))
         print("expected result: " + expected_result)
         print("actual result: " + result)
 
@@ -83,7 +83,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc4-empty_file.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -96,7 +96,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc5-missing_json_start.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -109,7 +109,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc6-missing_fields.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure: missing FIELDS",
@@ -122,7 +122,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc7_missing_json_end.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -135,7 +135,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc8-missing_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -148,7 +148,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc9-missing_separator.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -161,7 +161,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc10-missing_filename.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -175,7 +175,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc11-duplicate_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure: duplicate field PROJECT_ID",
@@ -188,7 +188,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc12-duplicate_filename.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure: duplicate field FILENAME",
@@ -201,7 +201,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc13_del_open_quote_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -214,7 +214,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc14_missing_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure. Invalid PROJECT_ID label",
@@ -227,7 +227,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc15_del_close_quote_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -240,7 +240,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc16_missing_colon_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -253,7 +253,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc17_del_open_quote_proj_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -266,7 +266,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc18_missing_proj_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid PROJECT_ID value",
@@ -279,7 +279,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc19_del_close_quote_proj_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -292,7 +292,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc20_del_open_quote_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -305,7 +305,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc21_missing_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure. Invalid FILENAME label",
@@ -318,7 +318,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc22_del_close_quote_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -331,7 +331,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc23_missing_colon_filename.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -344,7 +344,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc24_del_open_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -357,7 +357,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc25_missing_name.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid NAME",
@@ -370,7 +370,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc26_missing_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -383,7 +383,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc27_del_close_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -396,7 +396,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc28_dup_json_start.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -409,7 +409,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc29_mod_json_start.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -422,7 +422,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc30_dup_json_end.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -435,7 +435,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc31_mod_json_end.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -448,7 +448,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc32_dup_open_quote_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -461,7 +461,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc33_mod_open_quote_proj_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -474,7 +474,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_project_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure. Invalid PROJECT_ID label",
@@ -486,7 +486,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_project_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure. Invalid PROJECT_ID label",
@@ -499,7 +499,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc36_dup_close_quote_project_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -512,7 +512,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc37_mod_close_quote_project_id_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -525,7 +525,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc38_dup_colon_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -538,7 +538,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc39_mod_colon_project_id.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -551,7 +551,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc40_dup_open_quote_project_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -564,7 +564,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc41_mod_open_quote_project_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -577,7 +577,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_project_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid PROJECT_ID value",
@@ -590,7 +590,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_project_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid PROJECT_ID value",
@@ -603,7 +603,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc44_dup_close_quote_project_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -616,7 +616,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc45_mod_close_quote_project_id_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -629,7 +629,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc46_dup_separator.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -642,7 +642,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc47_mod_separator.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -655,7 +655,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc48_dup_open_quote_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -668,7 +668,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc49_mod_open_quote_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -682,7 +682,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure. Invalid FILENAME label",
@@ -695,7 +695,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON does not have the expected structure. Invalid FILENAME label",
@@ -708,7 +708,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc52_dup_close_quote_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -721,7 +721,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc53_mod_close_quote_filename_label.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -734,7 +734,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc54_dup_colon_filename.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -747,7 +747,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc55_mod_colon_filename.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -760,7 +760,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc56_dup_open_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -773,7 +773,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc57_mod_open_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -787,7 +787,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_name_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid NAME",
@@ -799,7 +799,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_name_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid NAME",
@@ -812,7 +812,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc60_dup_pdf_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -825,7 +825,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc61_dup_docx_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -838,7 +838,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc62_dup_xlsx_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -851,7 +851,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -864,7 +864,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -877,7 +877,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "shared-invalid_extension.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "JSON data has no valid values: invalid EXTENSION",
@@ -890,7 +890,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc66_dup_close_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -903,7 +903,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc67_mod_close_quote_filename_value.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "The file is not JSON formatted.",
@@ -916,7 +916,7 @@ class MyTestCase(unittest.TestCase):
         json_path = self.get_json_path("invalid", "tc68-file_does_not_exist.json")
 
         with self.assertRaises(EnterpriseManagementException) as context:
-            manager.register_document(str(json_path))
+            manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "Input file not found.",
@@ -934,7 +934,7 @@ class MyTestCase(unittest.TestCase):
                 side_effect=Exception("Forced signature error")
         ):
             with self.assertRaises(EnterpriseManagementException) as context:
-                manager.register_document(str(json_path))
+                manager.RegisterDocument(str(json_path))
 
         self.assertEqual(
             "Internal processing error when getting the file_signature.",
