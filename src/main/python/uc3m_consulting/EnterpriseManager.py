@@ -55,45 +55,45 @@ class EnterpriseManager:
                     FILE,
                     object_pairs_hook=json_object_pairs_hook
                 )
-        #Added for TC14
+        # Added for TC68
         except FileNotFoundError as EXC:
             raise EnterpriseManagementException("Input file not found.") from EXC
         except json.JSONDecodeError as EXC:
+            # Hits TC4-TC5, TC7-TC10, TC13, TC15-TC17, TC19-TC20, TC22-TC24
+            # TC27-TC33, TC36-TC41, TC44-TC49, TC52-TC57, TC66-TC67
             raise EnterpriseManagementException(
-                "The file is not JSON formatted." # Hits TC4, TC5 and TC6
+                "The file is not JSON formatted."
             ) from EXC
 
-        # Added for TC7
+        # Added for TC6
         if not INPUT_DATA:
             raise EnterpriseManagementException(
                 "JSON does not have the expected structure: missing FIELDS"
             )
 
-
+        # Added to pass TC14/TC34/TC35
         if "PROJECT_ID" not in INPUT_DATA:
             raise EnterpriseManagementException(
-                # Added to pass TC10
                 "JSON does not have the expected structure. Invalid PROJECT_ID label"
             )
 
         PROJECT_ID = INPUT_DATA["PROJECT_ID"]
 
-        #Added to pass TC14/TC42/TC43
+        #Added to pass TC18/TC42/TC43
         if not (isinstance(PROJECT_ID, str) and re.fullmatch(r"[0-9a-fA-F]{32}", PROJECT_ID)):
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid PROJECT_ID value"
             )
 
-        #Added to pass TC21/50/51
+        #Added to pass TC21/TC50/TC51
         if "FILENAME" not in INPUT_DATA:
             raise EnterpriseManagementException(
-                # Added to pass TC21
                 "JSON does not have the expected structure. Invalid FILENAME label"
             )
 
         FILE_NAME = INPUT_DATA["FILENAME"]
 
-        # Added for TC26/63/64/65
+        # Added for TC26/TC63/TC64/TC65
         if "." not in FILE_NAME:
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid EXTENSION"
@@ -101,34 +101,29 @@ class EnterpriseManager:
 
         NAME_PART, EXTENSION = FILE_NAME.rsplit(".", 1)
 
-        # Added to pass TC63/64/65
+        # Added to pass TC63/TC64/TC65
         if EXTENSION not in {"pdf", "docx", "xlsx"}:
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid EXTENSION"
             )
 
-        # Added to pass TC60/61/62
+        # Added to pass TC60/TC61/TC62
         if "." in NAME_PART:
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid EXTENSION"
             )
 
-        #Added to pass TC25/58/59 added criteria: length == 8 chars
-        if not (NAME_PART.isalnum() and len(NAME_PART) == 8):  # added criteria: length == 8 chars
+        # Added to pass TC25/TC58/TC59 added criteria: length == 8 chars
+        if not (NAME_PART.isalnum() and len(NAME_PART) == 8):
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid NAME"
-            )
-
-        #Added to pass TC13
-        if EXTENSION not in {"pdf", "docx", "xlsx"}:
-            raise EnterpriseManagementException(
-                "JSON data has no valid values: invalid EXTENSION"
             )
 
         try:
             DOCUMENT = ProjectDocument(PROJECT_ID, FILE_NAME)
             FILE_SIGNATURE = DOCUMENT.file_signature
         except Exception as EXC:
+            # Added to pass TC69
             raise EnterpriseManagementException(
                 "Internal processing error when getting the file_signature."
             ) from EXC
@@ -136,6 +131,7 @@ class EnterpriseManager:
         try:
             with open("all_documents.json", "r", encoding="utf-8") as FILE:
                 ALL_DOCUMENTS = json.load(FILE)
+        # create output file if it doesn't already exist
         except FileNotFoundError:
             ALL_DOCUMENTS = []
 

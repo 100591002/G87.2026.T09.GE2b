@@ -5,6 +5,7 @@ from pathlib import Path
 from unittest.mock import PropertyMock, patch
 
 import uc3m_consulting
+from uc3m_consulting import ProjectDocument
 
 
 class MyTestCase(unittest.TestCase):
@@ -928,8 +929,9 @@ class MyTestCase(unittest.TestCase):
         MANAGER = uc3m_consulting.EnterpriseManager()
         JSON_PATH = self.GetJsonPath("invalid", "tc69-valid_for_signature_error.json")
 
-        with patch(
-                "uc3m_consulting.EnterpriseManager.ProjectDocument.file_signature",
+        with patch.object(
+                ProjectDocument,
+                "file_signature",
                 new_callable=PropertyMock,
                 side_effect=Exception("Forced signature error")
         ):
