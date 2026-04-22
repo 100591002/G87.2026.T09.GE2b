@@ -1,5 +1,6 @@
 """Module """
 import json
+import re
 
 from .project_document import ProjectDocument
 from .enterprise_management_exception import EnterpriseManagementException
@@ -77,8 +78,8 @@ class EnterpriseManager:
 
         project_id = input_data["PROJECT_ID"]
 
-        #Added to pass TC11
-        if not isinstance(project_id, str) or len(project_id) != 32:
+        #Added to pass TC14/TC42/TC43
+        if not (isinstance(project_id, str) and re.fullmatch(r"[0-9a-fA-F]{32}", project_id)):
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid PROJECT_ID value"
             )
