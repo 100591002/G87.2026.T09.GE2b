@@ -84,6 +84,13 @@ class EnterpriseManager:
                 "JSON data has no valid values: invalid PROJECT_ID value"
             )
 
+        #Added to pass TC21/50/51
+        if "FILENAME" not in input_data:
+            raise EnterpriseManagementException(
+                # Added to pass TC21
+                "JSON does not have the expected structure. Invalid FILENAME label"
+            )
+
         file_name = input_data["FILENAME"]
 
         #Added to pass TC12
