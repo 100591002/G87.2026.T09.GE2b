@@ -107,6 +107,12 @@ class EnterpriseManager:
                 "JSON data has no valid values: invalid EXTENSION"
             )
 
+        # Added to pass TC60/61/62
+        if "." in name_part:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid EXTENSION"
+            )
+
         #Added to pass TC25/58/59 added criteria: length == 8 chars
         if not (name_part.isalnum() and len(name_part) == 8):  # added criteria: length == 8 chars
             raise EnterpriseManagementException(
