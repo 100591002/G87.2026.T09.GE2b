@@ -96,7 +96,8 @@ class EnterpriseManager:
         #Added to pass TC12
         name_part = file_name.split(".")[0]
 
-        if not name_part.isalnum():
+        #Added to pass TC25/58/59 added criteria: length == 8 chars
+        if not (name_part.isalnum() and len(name_part) == 8):  # added criteria: length == 8 chars
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid NAME"
             )
