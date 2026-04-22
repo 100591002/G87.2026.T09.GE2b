@@ -93,8 +93,19 @@ class EnterpriseManager:
 
         file_name = input_data["FILENAME"]
 
-        #Added to pass TC12
-        name_part = file_name.split(".")[0]
+        # Added for TC26/63/64/65
+        if "." not in file_name:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid EXTENSION"
+            )
+
+        name_part, extension = file_name.rsplit(".", 1)
+
+        # Added to pass TC63/64/65
+        if extension not in {"pdf", "docx", "xlsx"}:
+            raise EnterpriseManagementException(
+                "JSON data has no valid values: invalid EXTENSION"
+            )
 
         #Added to pass TC25/58/59 added criteria: length == 8 chars
         if not (name_part.isalnum() and len(name_part) == 8):  # added criteria: length == 8 chars
@@ -103,8 +114,6 @@ class EnterpriseManager:
             )
 
         #Added to pass TC13
-        extension = file_name.split(".")[-1]
-
         if extension not in {"pdf", "docx", "xlsx"}:
             raise EnterpriseManagementException(
                 "JSON data has no valid values: invalid EXTENSION"
