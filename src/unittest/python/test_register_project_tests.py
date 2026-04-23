@@ -935,6 +935,11 @@ class MyTestCase(unittest.TestCase):
                 new_callable=PropertyMock,
                 side_effect=Exception("Forced signature error")
         ):
+        # with patch(
+        #         "uc3m_consulting.enterprise_manager.ProjectDocument.file_signature",
+        #         new_callable=PropertyMock,
+        #         side_effect=Exception("Forced signature error")
+        # ):
             with self.assertRaises(uc3m_consulting.EnterpriseManagementException) as context:
                 manager.register_document(str(json_path))
 
